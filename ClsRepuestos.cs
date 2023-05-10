@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace pryPonssaRepuestos._2
 {
-    public class ClsRepuestos
+    internal class ClsRepuestos
     {
          //Propiedades
          public string Código { get; set; }
