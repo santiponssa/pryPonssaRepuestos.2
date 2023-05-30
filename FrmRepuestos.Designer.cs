@@ -126,12 +126,10 @@
             // optNacional
             // 
             this.optNacional.AutoSize = true;
-            this.optNacional.Checked = true;
             this.optNacional.Location = new System.Drawing.Point(129, 319);
             this.optNacional.Name = "optNacional";
             this.optNacional.Size = new System.Drawing.Size(95, 24);
             this.optNacional.TabIndex = 9;
-            this.optNacional.TabStop = true;
             this.optNacional.Text = "Nacional";
             this.optNacional.UseVisualStyleBackColor = true;
             // 

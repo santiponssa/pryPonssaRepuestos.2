@@ -19,7 +19,7 @@ namespace pryPonssaRepuestos._2
 
         private void FrmAutocorRepuestos_Load(object sender, EventArgs e)
         {
-            
+            Inicializar();
         }
 
         private void btnSalir_Click(object sender, EventArgs e)
