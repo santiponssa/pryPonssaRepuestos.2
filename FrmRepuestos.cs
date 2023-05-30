@@ -40,7 +40,16 @@ namespace pryPonssaRepuestos._2
                 e.Handled = true;
             }
         }
-
+        public void Inicializar()
+        {
+            txtCodigo.Text = "";
+            txtNombre.Text = "";
+            lstMarca.SelectedItem = null;
+            txtPrecio.Text = "";
+            optNacional.Checked = true;
+            txtCodigo.Focus();
+        }
+        
         private void btnAceptar_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Datos Guardados");
@@ -57,18 +66,12 @@ namespace pryPonssaRepuestos._2
             {
                 objR.Origen = "Importado";
             }
+            Inicializar();
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
-            //Limpiar los TextBox
-            txtCodigo.Text = string.Empty;
-            txtNombre.Text = string.Empty;
-            txtPrecio.Text = string.Empty;
-
-            lstMarca.SelectedItem = null;
-            optNacional.Checked = true;
-            txtCodigo.Focus();
+            Inicializar();
         }
 
         private void btnConsultar_Click(object sender, EventArgs e)
@@ -76,6 +79,11 @@ namespace pryPonssaRepuestos._2
             this.Hide();
             FrmConsultaRepuestos frm = new FrmConsultaRepuestos();
             frm.Show(); 
+        }
+
+        private void txtPrecio_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

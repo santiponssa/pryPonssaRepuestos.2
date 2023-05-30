@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace pryPonssaRepuestos._2
 {
@@ -16,6 +17,6 @@ namespace pryPonssaRepuestos._2
          public string Origen { get; set; }
         
          //Métodos
-
+         
     }
 }
