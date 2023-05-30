@@ -147,9 +147,9 @@
             this.lstMarca.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.lstMarca.FormattingEnabled = true;
             this.lstMarca.Items.AddRange(new object[] {
-            "Marca A",
-            "Marca B",
-            "Marca C"});
+            "A",
+            "B",
+            "C"});
             this.lstMarca.Location = new System.Drawing.Point(129, 182);
             this.lstMarca.Name = "lstMarca";
             this.lstMarca.Size = new System.Drawing.Size(251, 28);

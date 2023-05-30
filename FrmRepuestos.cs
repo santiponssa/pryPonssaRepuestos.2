@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -57,7 +58,7 @@ namespace pryPonssaRepuestos._2
             objR.Código = txtCodigo.Text;
             objR.Nombre = txtNombre.Text;
             objR.Marca = lstMarca.Text;
-            objR.Precio = txtPrecio.Text;
+            objR.Precio = txtPrecio.;
             if (optNacional.Checked = true)
             {
                 objR.Origen = "Nacional";
@@ -66,6 +67,7 @@ namespace pryPonssaRepuestos._2
             {
                 objR.Origen = "Importado";
             }
+            
             Inicializar();
         }
 
