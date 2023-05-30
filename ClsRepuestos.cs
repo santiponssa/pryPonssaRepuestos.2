@@ -21,8 +21,8 @@ namespace pryPonssaRepuestos._2
         //Métodos
         public void GuardarRepuesto()
         {
-            StreamWriter sw = new StreamWriter("REPUESTOS.txt", true);
-            sw.WriteLine(Código + "," + Nombre + "," + Marca + "," + 
+            StreamWriter sw = new StreamWriter("REPUESTOS.txt", false);
+            sw.WriteLine(Código + "," + Nombre + "," + Marca + "," +
                          Precio.ToString() + "," + Origen);
             sw.Close();
             sw.Dispose();
@@ -30,7 +30,7 @@ namespace pryPonssaRepuestos._2
         public void VerificarCódigoRepetido(string Código)
         {
             string Linea;
-            StreamReader sr = new StreamReader("REPUESTOS.txt");
+            StreamReader sr = new StreamReader("REPUESTOS.txt", true);
             while (sr.EndOfStream == false)
             {
                 Linea = sr.ReadLine();

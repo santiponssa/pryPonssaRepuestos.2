@@ -25,7 +25,7 @@ namespace pryPonssaRepuestos._2
 
         private void btnSalir_Click(object sender, EventArgs e)
         { //Cierra el formulario
-            this.Close();
+            Close();
         }
 
         private void txtPrecio_KeyPress(object sender, KeyPressEventArgs e)
@@ -52,24 +52,34 @@ namespace pryPonssaRepuestos._2
         }
         public void ChequearDatosIngresados()
         {
-            if (txtCodigo.Text == "" || txtNombre.Text == "" || txtPrecio.Text == "" ||
-                lstMarca.SelectedItem == null)
+            int primero = 0;
+            while (primero == 0)
             {
-                MessageBox.Show("Completar correctamente los datos del repuesto.");
+                ClsRepuestos objR = new ClsRepuestos();
+                objR.GuardarRepuesto();
+                if (txtCodigo.Text == "" || txtNombre.Text == "" || txtPrecio.Text == "" ||
+                    lstMarca.SelectedItem == null)
+                {
+                    MessageBox.Show("Completar correctamente los datos del repuesto.");
+                    Inicializar();
+                }
+                ClsRepuestos objR = new ClsRepuestos();
+                objR.VerificarCódigoRepetido(txtCodigo.Text);
+                primero++;
             }
-            ClsRepuestos rep = new ClsRepuestos();
-            rep.VerificarCódigoRepetido(txtCodigo.Text);
+
         }
         
         private void btnAceptar_Click(object sender, EventArgs e)
         {
+            ChequearDatosIngresados();
             MessageBox.Show("Datos Guardados");
             ClsRepuestos objR = new ClsRepuestos();
             objR.Código = txtCodigo.Text;
             objR.Nombre = txtNombre.Text;
             objR.Marca = lstMarca.Text;
             objR.Precio = txtPrecio.Text;
-            
+
             if (optNacional.Checked == true)
             {
                 objR.Origen = "Nacional";
@@ -78,7 +88,8 @@ namespace pryPonssaRepuestos._2
             {
                 objR.Origen = "Importado";
             }
-            ChequearDatosIngresados();
+            ClsRepuestos rep = new ClsRepuestos();
+            rep.GuardarRepuesto();
             Inicializar();
         }
 
