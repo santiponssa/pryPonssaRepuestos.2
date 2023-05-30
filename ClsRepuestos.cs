@@ -17,31 +17,5 @@ namespace pryPonssaRepuestos._2
          public string Marca { get; set; }
          public string Precio { get; set; }
          public string Origen { get; set; }
-
-        //Métodos
-        public void GuardarRepuesto()
-        {
-            StreamWriter sw = new StreamWriter("REPUESTOS.txt", false);
-            sw.WriteLine(Código + "," + Nombre + "," + Marca + "," +
-                         Precio.ToString() + "," + Origen);
-            sw.Close();
-            sw.Dispose();
-        }
-        public void VerificarCódigoRepetido(string Código)
-        {
-            string Linea;
-            StreamReader sr = new StreamReader("REPUESTOS.txt", true);
-            while (sr.EndOfStream == false)
-            {
-                Linea = sr.ReadLine();
-                if (Código == Linea.Split(',')[0])
-                {
-                    MessageBox.Show("Código de repuesto repetido");
-                    break;
-                }
-            }
-            sr.Close();
-            sr.Dispose();
-        }
     }
 }

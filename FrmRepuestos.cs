@@ -24,19 +24,18 @@ namespace pryPonssaRepuestos._2
         }
 
         private void btnSalir_Click(object sender, EventArgs e)
-        { //Cierra el formulario
+        {
             Close();
         }
 
         private void txtPrecio_KeyPress(object sender, KeyPressEventArgs e)
         {   // solo se pueden ingresar numeros
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) &&
-                (e.KeyChar != '.'))
+            if (!char.IsNumber(e.KeyChar) && e.KeyChar != '.' && e.KeyChar != (int)Keys.Back)
             {
                 e.Handled = true;
             }
             // Para que solo acepte un punto de decimal
-            if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+            if ((e.KeyChar == '.') && txtPrecio.Text.Contains('.'))
             {
                 e.Handled = true;
             }
@@ -50,49 +49,56 @@ namespace pryPonssaRepuestos._2
             optNacional.Checked = true;
             txtCodigo.Focus();
         }
-        public void ChequearDatosIngresados()
+        public bool ChequearDatosIngresados()
         {
-            int primero = 0;
-            while (primero == 0)
+            bool resultado = false;
+            // si falto completar algun dato
+            if (txtCodigo.Text == "" || txtNombre.Text == "" || txtPrecio.Text == "" ||
+                lstMarca.SelectedItem == null)
             {
-                //ClsRepuestos objR = new ClsRepuestos();
-                //objR.GuardarRepuesto();
-                if (txtCodigo.Text == "" || txtNombre.Text == "" || txtPrecio.Text == "" ||
-                    lstMarca.SelectedItem == null)
+                ClsArchivo Repuestos = new ClsArchivo();
+                // controla que no se repita el codigo del repuesto
+                if (Repuestos.VerificarCódigoRepetido(txtCodigo.Text) == false)
                 {
-                    MessageBox.Show("Completar correctamente los datos del repuesto.");
-                    Inicializar();
+                    resultado = true;
                 }
-                ClsRepuestos objR = new ClsRepuestos();
-                objR.VerificarCódigoRepetido(txtCodigo.Text);
-                primero++;
             }
-
+            return resultado;
         }
-        
         private void btnAceptar_Click(object sender, EventArgs e)
-        {
-            ChequearDatosIngresados();
-            MessageBox.Show("Datos Guardados");
-            ClsRepuestos objR = new ClsRepuestos();
-            objR.Código = txtCodigo.Text;
-            objR.Nombre = txtNombre.Text;
-            objR.Marca = lstMarca.Text;
-            objR.Precio = txtPrecio.Text;
-
-            if (optNacional.Checked == true)
+        {     // si los datos son correctos
+            if (ChequearDatosIngresados()) 
             {
-                objR.Origen = "Nacional";
+                // crear nuevo repuesto
+                ClsRepuestos nuevoRep = CrearRepuesto();
+                // guardar en el archivo
+                ClsArchivo Repuestos = new ClsArchivo();
+                Repuestos.GuardarRepuesto(nuevoRep);
+                Inicializar();
+            }
+            // si hay algún error
+            else
+            {
+                MessageBox.Show("Datos incorrectos");
+            }
+        }
+        private ClsRepuestos CrearRepuesto()
+        {
+            ClsRepuestos nuevoRep = new ClsRepuestos();
+            nuevoRep.Código = txtCodigo.Text;
+            nuevoRep.Nombre = txtNombre.Text;
+            nuevoRep.Marca = lstMarca.SelectedItem.ToString();
+            nuevoRep.Precio = txtPrecio.Text;
+            if (optNacional.Checked)
+            {
+                nuevoRep.Origen = "Nacional";
             }
             else
             {
-                objR.Origen = "Importado";
+                nuevoRep.Origen = "Importado";
             }
-            ClsRepuestos rep = new ClsRepuestos();
-            rep.GuardarRepuesto();
-            Inicializar();
+            return nuevoRep; // devuelve el objeto creado
         }
-
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             Inicializar();
