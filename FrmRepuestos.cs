@@ -29,7 +29,7 @@ namespace pryPonssaRepuestos._2
         }
 
         private void txtPrecio_KeyPress(object sender, KeyPressEventArgs e)
-        {
+        {   // solo se pueden ingresar numeros
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) &&
                 (e.KeyChar != '.'))
             {
@@ -55,8 +55,8 @@ namespace pryPonssaRepuestos._2
             int primero = 0;
             while (primero == 0)
             {
-                ClsRepuestos objR = new ClsRepuestos();
-                objR.GuardarRepuesto();
+                //ClsRepuestos objR = new ClsRepuestos();
+                //objR.GuardarRepuesto();
                 if (txtCodigo.Text == "" || txtNombre.Text == "" || txtPrecio.Text == "" ||
                     lstMarca.SelectedItem == null)
                 {
