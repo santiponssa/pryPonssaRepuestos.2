@@ -13,6 +13,9 @@ namespace pryPonssaRepuestos._2
 {
     public partial class FrmAutocorRepuestos : Form
     {
+        // definimos en nombre del archivo en una constante
+        private const string PATH_ARCHIVO = "Repuestos.txt";
+
         public FrmAutocorRepuestos()
         {
             InitializeComponent();
@@ -51,16 +54,22 @@ namespace pryPonssaRepuestos._2
         }
         public bool ChequearDatosIngresados()
         {
+            // devuelve falso si no se cumplen todas las condiciones
             bool resultado = false;
-            // si falto completar algun dato
-            if (txtCodigo.Text == "" || txtNombre.Text == "" || txtPrecio.Text == "" ||
-                lstMarca.SelectedItem == null)
+            if (txtCodigo.Text != "") // controla el valor del código
             {
-                ClsArchivo Repuestos = new ClsArchivo();
-                // controla que no se repita el codigo del repuesto
-                if (Repuestos.VerificarCódigoRepetido(txtCodigo.Text) == false)
+                if (txtNombre.Text != "") // controla el nombre
                 {
-                    resultado = true;
+                    if (txtPrecio.Text != "") // controla el precio
+                    {
+                        ClsArchivo Repuestos = new ClsArchivo();
+                        // controla que no se repita el código del repuesto
+                        if (Repuestos.VerificarCódigoRepetido(txtCodigo.Text) == false)
+                        {
+                            resultado = true; // devuelve verdadero sólo si todas
+                                              // las condiciones se cumplieron
+                        }
+                    }
                 }
             }
             return resultado;
