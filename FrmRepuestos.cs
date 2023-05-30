@@ -50,6 +50,16 @@ namespace pryPonssaRepuestos._2
             optNacional.Checked = true;
             txtCodigo.Focus();
         }
+        public void ChequearDatosIngresados()
+        {
+            if (txtCodigo.Text == "" || txtNombre.Text == "" || txtPrecio.Text == "" ||
+                lstMarca.SelectedItem == null)
+            {
+                MessageBox.Show("Completar correctamente los datos del repuesto.");
+            }
+            ClsRepuestos rep = new ClsRepuestos();
+            rep.VerificarCódigoRepetido(txtCodigo.Text);
+        }
         
         private void btnAceptar_Click(object sender, EventArgs e)
         {
@@ -68,7 +78,7 @@ namespace pryPonssaRepuestos._2
             {
                 objR.Origen = "Importado";
             }
-            
+            ChequearDatosIngresados();
             Inicializar();
         }
 

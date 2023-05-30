@@ -15,7 +15,7 @@ namespace pryPonssaRepuestos._2
          public string Código { get; set; }
          public string Nombre { get; set; }
          public string Marca { get; set; }
-         public float Precio { get; set; }
+         public string Precio { get; set; }
          public string Origen { get; set; }
 
         //Métodos
@@ -27,7 +27,7 @@ namespace pryPonssaRepuestos._2
             sw.Close();
             sw.Dispose();
         }
-        public void VerificarCódigoRepetido()
+        public void VerificarCódigoRepetido(string Código)
         {
             string Linea;
             StreamReader sr = new StreamReader("REPUESTOS.txt");
