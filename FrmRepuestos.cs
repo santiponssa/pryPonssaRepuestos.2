@@ -58,8 +58,9 @@ namespace pryPonssaRepuestos._2
             objR.Código = txtCodigo.Text;
             objR.Nombre = txtNombre.Text;
             objR.Marca = lstMarca.Text;
-            objR.Precio = txtPrecio.;
-            if (optNacional.Checked = true)
+            objR.Precio = txtPrecio.Text;
+            
+            if (optNacional.Checked == true)
             {
                 objR.Origen = "Nacional";
             }
